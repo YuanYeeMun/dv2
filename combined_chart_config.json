@@ -1,0 +1,192 @@
+{
+  "combined_chart": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "resolve": {
+      "scale": {
+        "color": "independent"
+      }
+    },
+    "spacing":  100,
+    "hconcat": [
+      {
+        "width": 500,
+        "height": 450,
+        "data": {
+          "values": []
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "point",
+              "filled": true,
+              "size": 150,
+              "opacity": 0.8
+            },
+            "encoding": {
+              "x": {
+                "field": "u_rate",
+                "type": "quantitative",
+                "title": "Unemployment Rate (%)",
+                "scale": {"zero": false, "nice": true}
+              },
+              "y": {
+                "field": "income_median",
+                "type": "quantitative",
+                "title": "Median Household Income (RM)",
+                "scale": {"zero": false, "nice": true},
+                "axis": {
+                  "format": ",.0f"
+                }
+              },
+              "color": {
+                "field": "income_percentile",
+                "type": "quantitative",
+                "title": "Income Percentile",
+                "scale": {
+                  "type": "threshold",
+                  "domain": [20, 40, 60, 80],
+                  "range": ["#fff200", "#fcae1e", "#fb6a00", "#b56727", "#7b3f00"]
+                },
+                "legend": {
+                  "orient": "right",
+                  "gradientLength": 200
+                }
+              },
+              "tooltip": [
+                {"field": "state", "type": "nominal", "title": "State"},
+                {"field": "u_rate", "type": "quantitative", "title": "Unemployment Rate (%)", "format": ".2f"},
+                {"field": "income_median", "type": "quantitative", "title": "Median Income (RM)", "format": ",.0f"},
+                {"field": "income_percentile", "type": "quantitative", "title": "Income Percentile", "format": ".1f"}
+              ]
+            }
+          },
+          {
+            "mark": {
+              "type": "line",
+              "color": "#ff8000ff",
+              "strokeWidth": 3,
+              "strokeDash": [8, 4]
+            },
+            "transform": [
+              {
+                "regression": "income_median",
+                "on": "u_rate",
+                "method": "linear"
+              }
+            ],
+            "encoding": {
+              "x": {"field": "u_rate", "type": "quantitative"},
+              "y": {"field": "income_median", "type": "quantitative"}
+            }
+          },
+          {
+          
+            "mark": {
+              "type": "text",
+              "align": "right",
+              "baseline": "bottom",
+              "dx": 15,
+              "dy": 15,
+              "fontSize": 16,
+              "fontWeight": "bold",
+              "color": "#ff8000ff"
+            },
+            "transform": [
+              {
+                "regression": "income_median",
+                "on": "u_rate",
+                "method": "linear",
+                "params": true
+              },
+              {"calculate": "'R² = ' + format(datum.rSquared, '.3f')", "as": "r2_text"}
+            ],
+            "encoding": {
+              "x": {"value": 10},
+              "y": {"value": 10},
+              "text": {"field": "r2_text", "type": "nominal"}
+            }
+          },
+          {
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "dx": 7,
+              "dy": -7,
+              "fontSize": 9,
+              "color": "#333"
+            },
+            "encoding": {
+              "x": {"field": "u_rate", "type": "quantitative"},
+              "y": {"field": "income_median", "type": "quantitative"},
+              "text": {"field": "state", "type": "nominal"}
+            }
+          }
+        ],
+        "config": {
+          "view": {
+            "stroke": null
+          },
+          "axis": {
+            "grid": true,
+            "gridColor": "#e5e7eb"
+          }
+        }
+      },
+      {
+        "width": 500,
+        "height": 450,
+        "data": {
+          "values": []
+        },
+        "mark": {
+          "type": "bar"
+        },
+        "encoding": {
+          "y": {
+            "field": "state",
+            "type": "nominal",
+            "sort": {"field": "percent_diff", "order": "ascending"},
+            "axis": {
+              "title": null,
+              "labelFontSize": 11
+            }
+          },
+          "x": {
+            "field": "percent_diff",
+            "type": "quantitative",
+            "axis": {
+              "title": "% Difference from National Average",
+              "titleFontSize": 13
+            }
+          },
+          "color": {
+            "field": "category",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Below Average", "Above Average"],
+              "range": ["#feba28ff", "#2bb1ffff"]
+            },
+            "legend": {
+              "title": "Performance",
+              "orient": "bottom"
+            }
+          },
+          "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "percent_diff", "type": "quantitative", "title": "% Difference", "format": ".2f"},
+            {"field": "median", "type": "quantitative", "title": "Median Income", "format": ",.0f"}
+          ]
+        },
+        "config": {
+          "view": {
+            "stroke": null
+          },
+          "axis": {
+            "grid": true,
+            "gridColor": "#e5e7eb"
+          }
+        }
+      }
+    ]
+  }
+}

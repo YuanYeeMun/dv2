@@ -1,0 +1,246 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin: 0;
+}
+
+.container {
+    max-width: 1900px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h1, h3 {
+    font-family: serif;
+    text-align: center;
+    color: rgb(39, 39, 48);
+    margin: 10px 0;
+}
+
+h1 {
+    font-size: 55px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.divider {
+    border-top: 3px solid #333;
+    padding-top: 70px;
+}
+
+h3 {
+    margin-top: 40px;
+    font-size: 28px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.year-selectors {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+.selector-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.selector-group label {
+    font-weight: 600;
+    color: #555;
+}
+.selector-group select {
+    padding: 8px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    background: white;
+}
+.selector-group select:hover {
+    border-color: #999;
+}
+
+.maps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.map-cell {
+    position: relative;
+    border: 1px solid #ddd;
+    padding: 15px;
+    background-color: #fafafa;
+    border-radius: 4px;
+}
+
+.map-cell .vega-embed {
+    display: flex;
+    justify-content: center;
+}
+
+.year-label {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* Vega embed container styling */
+.map-cell .vega-embed {
+    width: 100%;
+}
+
+.map-cell .vega-embed summary {
+    display: none;
+}
+
+.scatter-container-single {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.scatter-container-single .vega-embed {
+    display: flex;
+    justify-content: center;
+}
+
+.insight-box {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #fff;
+    border-left: 4px solid #3498db;
+    border-radius: 4px;
+}
+
+.insight-box p {
+    color: #555;
+    font-size: 14px;
+}
+
+.insight-box strong {
+    color: #2c3e50;
+}
+
+.insight-box .note {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #eee;
+    font-style: italic;
+}
+
+.year-selector-single {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.year-selector-single label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.year-selector-single select {
+    padding: 8px 16px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.chart-pair {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.chart-headers {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.chart-header-left,
+.chart-header-right {
+  flex: 1;
+  text-align: center;
+}
+
+.chart-header-left h3,
+.chart-header-right h3 {
+  font-family: serif;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.chart-header-right .year-selector-single {
+  text-align: center;
+  margin-top: 15px;
+}
+
+#combined-chart-container {
+  display: flex;                 /* centers the embedded chart */
+  justify-content: center;       /* horizontally center */
+  align-items: center;           /* vertically center (optional) */
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#heatmap-chart,
+#line-chart {
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure Vega charts are responsive */
+#heatmap-chart .vega-embed,
+#line-chart .vega-embed {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.chart-description {
+    margin: 15px 0 30px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+    color: #4c4b4b;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Make charts responsive on smaller screens */
+@media (max-width: 768px) {
+    #heatmap-chart,
+    #line-chart {
+        padding: 10px;
+    }
+}

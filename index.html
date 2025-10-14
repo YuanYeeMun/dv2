@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaysia Regional Economic Disparities</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Vega Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Malaysia Regional Economic Disparities</h1>
+        <h1> 2012 - 2022</h1>
+
+        <hr class divider>
+
+        <p>Created By: Yuan Yee Mun, 5 October 2025</p>
+
+        <div class="year-selectors">
+            <div class="selector-group">
+                <label for="year1">Year 1:</label>
+                <select id="year1">
+                    <option value="2012" selected>2012</option>
+                    <option value="2014">2014</option>
+                    <option value="2016">2016</option>
+                    <option value="2019">2019</option>
+                    <option value="2022">2022</option>
+                </select>
+            </div>
+            <div class="selector-group">
+                <label for="year2">Year 2:</label>
+                <select id="year2">
+                    <option value="2012">2012</option>
+                    <option value="2014">2014</option>
+                    <option value="2016">2016</option>
+                    <option value="2019">2019</option>
+                    <option value="2022" selected>2022</option>
+                </select>
+            </div>
+        </div>
+
+        <h3>INCOME DISTRIBUTION vs UNEMPLOYMENT RATE</h3>
+        
+        <div class="maps-grid">
+            <div class="map-cell">
+                <div id="income-year1"></div>
+                <p class="year-label" id="label-income-year1">2012</p>
+            </div>
+            <div class="map-cell">
+                <div id="unemployment-year1"></div>
+                <p class="year-label" id="label-unemployment-year1">2012</p>
+            </div>
+            <div class="map-cell">
+                <div id="income-year2"></div>
+                <p class="year-label" id="label-income-year2">2022</p>
+            </div>
+            <div class="map-cell">
+                <div id="unemployment-year2"></div>
+                <p class="year-label" id="label-unemployment-year2">2022</p>
+            </div>
+        </div>
+
+        <script src="maps.js"></script>
+
+        <p> These maps illustrate economic disparities by showing how income and <br>employment opportunities are unevenly distributed across Malaysian regions.</p>
+
+        <p>Kuala Lumpur shows high income percentiles and low unemployment, <br>while Kelantan faces lower incomes and higher unemployment</p>
+
+        <hr class divider>
+
+        <div class="chart-pair">
+            <!-- Headers on top -->
+            <div class="chart-headers">
+                <div class="chart-header-left">
+                    <h3>INCOME vs UNEMPLOYMENT RELATIONSHIP</h3>
+                </div>
+                
+                <div class="chart-header-right">
+                    <h3>STATE PERFORMANCE vs NATIONAL AVERAGE</h3>
+                    <div class="year-selector-single">
+                        <label for="diverging-year">Select Year:</label>
+                        <select id="diverging-year">
+                            <option value="2012">2012</option>
+                            <option value="2014">2014</option>
+                            <option value="2016">2016</option>
+                            <option value="2019">2019</option>
+                            <option value="2022" selected>2022</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Combined chart container below headers -->
+            <div id="combined-chart-container"></div>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+                <p><strong>Key Insights:</strong></p>
+                <ul style="text-align: left; color: #555; line-height: 1.8;">
+                    <li>Scatter plot shows the relationship between unemployment rates and median household income across states in 2022</li>
+                    <li>Diverging bar chart compares each state's median income against the national average for the selected year</li>
+                    <li>States in <span style="color: #feba28;">yellow</span> perform below the national average, while states in <span style="color: #2bb1ff;">blue</span> perform above average</li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="combined.js"></script>
+
+        <hr class divider>
+
+        <h3>LABOUR FORCE PARTICIPATION RATE (%)</h3>
+        <p class="text-align: left; color: #555; line-height: 1.8;">Labour force participation rates reveal how effectively regions engage their working-age population.<br>
+        Higher rates often indicate greater economic opportunities and inclusivity.</p>
+        
+        <div class="year-selector-single">
+            <label for="sex-filter">Filter by Sex:</label>
+            <select id="sex-filter">
+                <option value="both" selected>Both</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+        </div>
+
+        <div id="heatmap-chart"></div>
+        <div id="line-chart"></div>
+
+        
+        <script src="heatmap.js"></script>
+        <script src="linechart.js"></script>
+
+        <hr class divider>
+
+        <footer>
+            <h4>Metadata</h4>
+            <p>
+                Government of Malaysia. (2023). 
+                <em>Annual Principal Labour Force Statistics by State & Sex. </em>
+                <a href="https://data.gov.my/data-catalogue/lfs_state_sex" target="_blank">
+                    data.gov.my
+                </a>
+            </p>  
+            <p>
+                Department of Statistics Malaysia. (2022). 
+                <em>Household Income by State </em>
+                <a href="https://open.dosm.gov.my/data-catalogue/hh_income_state" target="_blank">
+                    dosm.gov.my
+                </a>
+            </p>   
+
+    </div>
+
+
+
+    
+</body>
+</html>
