@@ -76,15 +76,15 @@ async function processData(divergingYear) {
     });
     
     const scatterData = scatterIncomeData.map(row => {
-    const unemploymentRow = scatterUnemploymentData.find(u => u.state === row.state);
-    
-    return {
-        state: row.state,
-        income_median: parseFloat(row.income_median),
-        income_percentile: parseFloat(row.income_percentile), 
-        u_rate: unemploymentRow ? parseFloat(unemploymentRow.u_rate) : null
-    };
-}).filter(d => d.u_rate !== null);
+        const unemploymentRow = scatterUnemploymentData.find(u => u.state === row.state);
+        
+        return {
+            state: row.state,
+            income_median: parseFloat(row.income_median),
+            income_percentile: parseFloat(row.income_percentile), 
+            u_rate: unemploymentRow ? parseFloat(unemploymentRow.u_rate) : null
+        };
+    }).filter(d => d.u_rate !== null);
     
     // Diverging data - changes based on year selector
     const divergingIncomeData = incomeData.filter(row => {
@@ -122,8 +122,51 @@ function createCombinedChart(scatterData, divergingData, divergingYear) {
     // Populate the scatter chart data (first chart in hconcat[0])
     spec.hconcat[0].data.values = scatterData;
     
+    // ADD BLACK STROKE HIGHLIGHTING TO SCATTER PLOT for KL and Kelantan
+    // Find the point mark layer (first layer)
+    const pointLayer = spec.hconcat[0].layer[0];
+    
+    // Add stroke width encoding
+    pointLayer.encoding.strokeWidth = {
+        "condition": {
+            "test": "datum.state === 'Kuala Lumpur' || datum.state === 'Kelantan'",
+            "value": 3
+        },
+        "value": 0
+    };
+    
+    // Add BLACK stroke color for both KL and Kelantan
+    pointLayer.encoding.stroke = {
+        "condition": {
+            "test": "datum.state === 'Kuala Lumpur' || datum.state === 'Kelantan'",
+            "value": "#000000"  // BLACK for both KL and Kelantan
+        },
+        "value": "transparent"
+    };
+    
     // Populate the diverging chart data (second chart in hconcat[1])
     spec.hconcat[1].data.values = divergingData;
+    
+    // KEEP ORIGINAL BAR COLORS - don't modify the color encoding
+    // The original colors from the template will be preserved
+    
+    // ADD BLACK STROKE HIGHLIGHTING TO BAR CHART for KL and Kelantan ONLY
+    spec.hconcat[1].encoding.strokeWidth = {
+        "condition": {
+            "test": "datum.state === 'Kuala Lumpur' || datum.state === 'Kelantan'",
+            "value": 3
+        },
+        "value": 0
+    };
+    
+    // Add BLACK stroke for both KL and Kelantan
+    spec.hconcat[1].encoding.stroke = {
+        "condition": {
+            "test": "datum.state === 'Kuala Lumpur' || datum.state === 'Kelantan'",
+            "value": "#000000"  // BLACK for both KL and Kelantan
+        },
+        "value": "transparent"
+    };
     
     // Render the combined chart
     vegaEmbed('#combined-chart-container', spec, { actions: false })
@@ -140,6 +183,22 @@ async function updateCharts() {
     
     const { scatterData, divergingData } = await processData(divergingYear);
     
+    const chartContainer = document.getElementById('combined-chart-container');
+    
+    // CHECK FOR NO DATA FIRST! (This must come before trying to create the chart)
+    if (divergingData.length === 0) {
+        // Display "Data not available" message
+        chartContainer.innerHTML = `
+            <div style="width: 100%; text-align: center; padding: 100px 40px; background-color: #f9f9f9; border-radius: 8px; border: 2px solid #ddd;">
+                <h2 style="color: #666; font-size: 32px; margin-bottom: 15px;">Data Not Available</h2>
+                <p style="color: #999; font-size: 18px;">No data available for year ${divergingYear}</p>
+                <p style="color: #999; font-size: 16px; margin-top: 10px;">Available years: 2012, 2014, 2016, 2019, 2022</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // ONLY create chart if data exists
     if (scatterData.length > 0 && divergingData.length > 0) {
         createCombinedChart(scatterData, divergingData, divergingYear);
     }

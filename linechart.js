@@ -18,7 +18,7 @@ function createLineChartSpec(selectedSex) {
                 "width": "container",
                 "height": 300,
                 "title": {
-                    "text": `Total National Participation Rate (2012–2022) - ${selectedSex.charAt(0).toUpperCase() + selectedSex.slice(1)}`,
+                    "text": `Cumulative State Participation Rates (2012–2022) - ${selectedSex.charAt(0).toUpperCase() + selectedSex.slice(1)}`,
                     "fontSize": 18,
                     "font": "Arial",
                     "anchor": "middle",
@@ -47,7 +47,6 @@ function createLineChartSpec(selectedSex) {
                                 "title": "",
                                 "scale": {"domain": {"param": "brush"}},
                                 "axis": {
-
                                     "labelFontSize": 10,
                                     "format": "%b %Y",
                                     "tickCount": {"interval": "month", "step": 6},
@@ -58,7 +57,7 @@ function createLineChartSpec(selectedSex) {
                             "y": {
                                 "field": "total_p_rate",
                                 "type": "quantitative",
-                                "title": "Total Participation Rate (%)",
+                                "title": "Sum of State Participation Rates",  // Removed % symbol
                                 "scale": {"zero": false, "nice": true},
                                 "axis": {"labelFontSize": 12, "titleFontSize": 14}
                             }
@@ -86,7 +85,7 @@ function createLineChartSpec(selectedSex) {
                             "y": {"field": "total_p_rate", "type": "quantitative"},
                             "tooltip": [
                                 {"field": "date_parsed", "type": "temporal", "title": "Date", "format": "%b %Y"},
-                                {"field": "total_p_rate", "type": "quantitative", "title": "Total Participation Rate (%)", "format": ".2f"}
+                                {"field": "total_p_rate", "type": "quantitative", "title": "Sum of State Rates", "format": ".2f"}  // Updated tooltip
                             ]
                         }
                     }
@@ -133,7 +132,7 @@ function createLineChartSpec(selectedSex) {
                         "field": "total_p_rate",
                         "type": "quantitative",
                         "axis": {"tickCount": 3, "grid": false},
-                        "title": "Total Rate"
+                        "title": "Cumulative Rate"  // Updated title
                     }
                 }
             }

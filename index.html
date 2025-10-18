@@ -15,6 +15,33 @@
         <h1>Malaysia Regional Economic Disparities</h1>
         <h1> 2012 - 2022</h1>
 
+        <!-- OPENING HOOK SECTION -->
+        <div class="hero-section" style="background: #ffe9e9 ; padding: 60px 40px; border-radius: 12px; margin: 40px 0; color: rgb(23, 23, 23); text-align: center;">
+            <h2 style="font-size: 48px; margin-bottom: 20px; color: rgb(0, 0, 0);">Malaysia's Widening Divide</h2>
+            <p style="font-size: 24px; line-height: 1.6; max-width: 900px; margin: 0 auto 40px auto; color: rgba(0, 0, 0, 0.95);">
+                In 2022, someone in <strong>Kuala Lumpur</strong> earns <strong style="font-size: 32px; color: #95862c;">2.5X more</strong> than someone in <strong>Kelantan</strong> and this gap has <strong style="color: #ff8818;">widened by 35%</strong> since 2012.
+            </p>
+            
+            <div style="display: flex; justify-content: center; gap: 60px; margin-top: 40px; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; font-weight: bold; color: #4adecd;">RM 10,549</div>
+                    <div style="font-size: 18px; margin-top: 10px; opacity: 0.9;">Kuala Lumpur<br>Median Income</div>
+                </div>
+                
+                <div style="font-size: 48px; align-self: center; color: #000000 ;">VS</div>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; font-weight: bold; color: #ff9225;">RM 4,314</div>
+                    <div style="font-size: 18px; margin-top: 10px; opacity: 0.9;">Kelantan<br>Median Income</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px; padding: 25px; background: rgba(255, 164, 164, 0.329); border-radius: 8px; backdrop-filter: blur(10px); max-width: 600px; margin-left: auto; margin-right: auto;">
+
+                <div style="font-size: 16px; opacity: 0.95;">Regional inequality increased by <strong>35%</strong> over the past decade</div>
+            </div>
+        </div>
+
         <hr class divider>
 
         <p>Created By: Yuan Yee Mun, 5 October 2025</p>
@@ -40,9 +67,66 @@
                     <option value="2022" selected>2022</option>
                 </select>
             </div>
-        </div>
 
-        <h3>INCOME DISTRIBUTION vs UNEMPLOYMENT RATE</h3>
+        </div>
+        
+        <p style="font-size: 13px; font-style: italic; ">Income data is collected biennially by the Department of Statistics Malaysia. Years shown represent available survey data.</p>
+
+
+        <!-- SECTION 1: THE DIVIDE -->
+        <div style="margin: 60px 0;">
+            <h2 style="font-size: 42px; text-align: center; color: #1f2937; margin-bottom: 20px;">
+                The Geographic Divide: Rich States vs Poor States
+            </h2>
+            
+            <div style="margin: 0 auto 40px; padding: 30px; background: #ffebeb; border-radius: 8px;">
+                <p style="font-size: 20px; line-height: 1.8; color: #78350f; margin: 0;">
+                 Economic prosperity in Malaysia isn't evenly distributed, it's concentrated in urban centers.
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;  margin: 0 auto 30px;">
+                <div class="state-group-card prosperous" style="padding: 25px; background: #ceeffe ; border-radius: 12px; ">
+                    <div style="text-align: center;font-size: 28px; margin-bottom: 15px;"><strong>Prosperous States</strong></div>
+                    <div style="font-size: 16px; line-height: 1.8; color: #254857; margin-bottom: 10px;">
+                        <strong>West Coast Urban:</strong><br>
+                        • High income + Low unemployment<br>
+                    </div>
+                    <div style="font-size: 13px; color: #0c4a6e; font-style: italic; margin-bottom: 15px;">
+                        Click on a state to highlight it on the maps
+                    </div>
+                    <div class="state-tags">
+                        <span class="state-tag prosperous" data-state="Kuala Lumpur">Kuala Lumpur</span>
+                        <span class="state-tag prosperous" data-state="Selangor">Selangor</span>
+                        <span class="state-tag prosperous" data-state="Putrajaya">Putrajaya</span>
+                        <span class="state-tag prosperous" data-state="Pulau Pinang">Pulau Pinang</span>
+                    </div>
+                </div>
+                
+                <div class="state-group-card struggling" style="padding: 25px; background: #ffe8be; border-radius: 12px; ">
+                    <div style="text-align: center;font-size: 28px; margin-bottom: 15px;"><strong>Struggling States</strong></div>
+                    <div style="font-size: 16px; line-height: 1.8; color: #7f1d1d; margin-bottom: 10px;">
+                        <strong>East Coast & Rural:</strong><br>
+                        • Low income + High unemployment<br>
+                    </div>
+                    <div style="font-size: 13px; color: #7f441d; font-style: italic; margin-bottom: 15px;">
+                        Click on a state to highlight it on the maps
+                    </div>
+                    <div class="state-tags">
+                        <span class="state-tag struggling" data-state="Kelantan">Kelantan</span>
+                        <span class="state-tag struggling" data-state="Sabah">Sabah</span>
+                        <span class="state-tag struggling" data-state="Perlis">Perlis</span>
+                        <span class="state-tag struggling" data-state="Kedah">Kedah</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <button id="clear-selection-btn" style="padding: 12px 24px; background: #6b7280; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; transition: all 0.3s;">
+                    Clear Selection
+                </button>
+            </div>
+        </div>
         
         <div class="maps-grid">
             <div class="map-cell">
@@ -65,25 +149,30 @@
 
         <script src="maps.js"></script>
 
-        <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <p style="font-size: 23px; text-align:center;"><strong>Key Insights:</strong></p>
-                <ul style="margin-left: 30px; text-align: left; color: #555; font-size: 20px; line-height: 1.8;">
-                    <li style="margin-bottom: 15px;">
-                        Income and unemployment are core indicators of regional economic health<br>
-                        states with high income and low unemployment have diversified economies,<br>
-                        while struggling states remain trapped in low-wage, limited-opportunity cycles.
-                    </li>
-                    <li>
-                        The stark contrast between Kuala Lumpur and Kelantan illustrates<br>
-                        how economic opportunities cluster in already-prosperous regions, widening<br>
-                        the development gap.
-                    </li>
-                </ul>
+        <hr class divider>
+
+        <!-- SECTION 2: THE CYCLE -->
+        <div style="margin: 80px 0 40px;">
+            <h2 style="font-size: 42px; text-align: center; color: #1f2937; margin-bottom: 20px;">
+                The Poverty Trap: Why Poor States Stay Poor?
+            </h2>
+            
+            <div style=" background: #ffe9e9 ; padding:30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <div style=" margin-bottom: 30px;">
+                    <p style="font-size: 20px; line-height: 1.8; color: #374151;">
+                        <strong style="color: #ff7206;">Vicious cycle</strong> at play: <br> Unemployment lowers income, discourages investment, and deepens poverty cycles.
+                    </p>
+                </div>
+                
+                
+                
+                <div style="margin-top: 40px; padding: 25px; background: rgb(255, 164, 164); border-radius: 8px;">
+                    <p style="font-size: 20px; line-height: 1.8;  margin: 0;">
+                        Each state needs <strong>targeted interventions</strong> based on their specific challenges.
+                    </p>
+                </div>
             </div>
         </div>
-
-        <hr class divider>
 
         <div class="chart-pair">
             <!-- Headers on top -->
@@ -98,9 +187,15 @@
                         <label for="diverging-year">Select Year:</label>
                         <select id="diverging-year">
                             <option value="2012">2012</option>
+                            <option value="2013">2013</option>
                             <option value="2014">2014</option>
+                            <option value="2015">2015</option>
                             <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
                             <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
                             <option value="2022" selected>2022</option>
                         </select>
                     </div>
@@ -110,32 +205,31 @@
             <!-- Combined chart container below headers -->
             <div id="combined-chart-container"></div>
             
-            <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
-                <div style="max-width: 800px; margin: 0 auto;">
-                    <p style="font-size: 23px; text-align:center;"><strong>Key Insights:</strong></p>
-                    <ul style="margin-left: 30px; text-align: left; color: #555; font-size: 20px; line-height: 1.8;">
-                        <li style="margin-bottom: 15px;">Scatter plot shows the relationship between unemployment rates and income disparities.</li>
-                        <li style="margin-bottom: 15px;">Diverging bar chart compares each state's median income differences from the national average.</li>
-                        <li style="margin-bottom: 15px;">States in <span style="color: #feba28;">yellow</span> perform below the average, while states in <span style="color: #2bb1ff;">blue</span> perform above average.</li>
-                        <li>National average calculated as the mean of all state median incomes.</li>
-                    </ul>
-                </div>
-            </div>
         </div>
 
         <script src="combined.js"></script>
 
         <hr class divider>
 
-        <h3>LABOUR FORCE PARTICIPATION RATE (%)</h3>
-        <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <ul style="margin-left: 30px; text-align: left; color: #555; font-size: 20px; line-height: 1.8;">
-                    <p style="margin-bottom: 15px;">Labour force participation rates reveal how effectively regions engage their working-age population.</p>
-                    <p>Higher rates often indicate greater economic opportunities and inclusivity.</p>
-                </ul>
+        <!-- SECTION 3: THE HUMAN COST -->
+        <div style="margin: 80px 0 40px;">
+            <h2 style="font-size: 42px; text-align: center; color: #1f2937; margin-bottom: 20px;">
+                Untapped Potential: The Human Cost of Inequality
+            </h2>
+            
+            <div style="margin: 0 auto; padding: 30px; background: #ffe9e9; border-radius: 12px;  margin-bottom: 40px;">
+                <p style="font-size: 20px; line-height: 1.8; color: #78350f; margin: 0;">
+                    Low participation wastes potential, reducing productivity and national progress.
+                </p>
+
+                <div style="margin-top: 40px; padding: 25px; background: rgb(255, 164, 164); border-radius: 8px;">
+                    <div style="font-size: 16px; line-height: 1.7; color: #000000;">
+                        Female participation in rural states is <strong>20-30% lower</strong> than urban areas.
+                    </div>
+                </div>
             </div>
-        </div>
+
+        <h3>LABOUR FORCE PARTICIPATION RATE (%)</h3>
         
         <div class="year-selector-single">
             <label for="sex-filter">Filter by Sex:</label>
@@ -149,33 +243,62 @@
         <div id="heatmap-chart"></div>
         <div id="line-chart"></div>
 
-        
         <script src="heatmap.js"></script>
         <script src="linechart.js"></script>
 
         <hr class divider>
 
+        <!-- CONCLUSION SECTION -->
+        <div style="margin: 80px 0; padding: 60px 40px; background: #fff8eb; border-radius: 12px; color: rgb(26, 26, 26);">
+            <h2 style="font-size: 42px; text-align: center; margin-bottom: 40px; color: rgb(22, 22, 22);">
+                What Needs to Change?
+            </h2>
+            
+            <div style="margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px;">
+                    <div style="padding: 30px; background: rgba(100, 92, 24, 0.1); backdrop-filter: blur(10px); border-radius: 10px; border: 2px solid rgba(255,255,255,0.2);">
+                        <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Inequality is WORSENING</div>
+                        <div style="font-size: 15px; line-height: 1.6; opacity: 0.9;">
+                            The gap between rich and poor states grew <strong style="color: #fbbf24;">35%</strong> in just 10 years (2012-2022)
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 30px; background: rgba(100, 92, 24, 0.1); backdrop-filter: blur(10px); border-radius: 10px; border: 2px solid rgba(255,255,255,0.2);">
+                        <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">The Poverty Trap is Real</div>
+                        <div style="font-size: 15px; line-height: 1.6; opacity: 0.9;">
+                            Poor states are stuck in a cycle: Low income → High unemployment → Low income
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 30px; background: rgba(100, 92, 24, 0.1); backdrop-filter: blur(10px); border-radius: 10px; border: 2px solid rgba(255,255,255,0.2);">
+                        <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">One-Size Doesn't Fit All</div>
+                        <div style="font-size: 15px; line-height: 1.6; opacity: 0.9;">
+                            States need <strong style="color: #60a5fa;">customized development strategies</strong>, not national blanket policies
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class divider>
+
         <footer>
             <h4>Metadata</h4>
-            <p>
+            <p style="font-size: 13px;">
                 Government of Malaysia. (2023). 
                 <em>Annual Principal Labour Force Statistics by State & Sex. </em>
                 <a href="https://data.gov.my/data-catalogue/lfs_state_sex" target="_blank">
                     data.gov.my
                 </a>
             </p>  
-            <p>
+            <p style="font-size: 13px;">
                 Department of Statistics Malaysia. (2022). 
                 <em>Household Income by State </em>
                 <a href="https://open.dosm.gov.my/data-catalogue/hh_income_state" target="_blank">
                     dosm.gov.my
                 </a>
             </p>   
-
+        </footer>
     </div>
-
-
-
-    
 </body>
 </html>

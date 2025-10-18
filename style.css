@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #ffe9e9;
     padding: 20px;
     margin: 0;
 }
@@ -14,7 +14,7 @@ body {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-h1, h3 {
+h1, h2, h3 {
     font-family: serif;
     text-align: center;
     color: rgb(39, 39, 48);
@@ -46,7 +46,7 @@ h3 {
     gap: 40px;
     margin: 30px 0;
     padding: 20px;
-    background: #f9f9f9;
+    background: #fff8eb;
     border-radius: 8px;
 }
 .selector-group {
@@ -81,10 +81,9 @@ h3 {
 
 .map-cell {
     position: relative;
-    border: 1px solid #ddd;
     padding: 15px;
-    background-color: #fafafa;
-    border-radius: 4px;
+    background-color: #fff8eb;
+    border-radius: 8px;
 }
 
 .map-cell .vega-embed {
@@ -200,9 +199,9 @@ h3 {
 }
 
 #combined-chart-container {
-  display: flex;                 /* centers the embedded chart */
-  justify-content: center;       /* horizontally center */
-  align-items: center;           /* vertically center (optional) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin: 0 auto;
   padding: 20px;
@@ -237,12 +236,85 @@ h3 {
     font-style: italic;
 }
 
-
-
 /* Make charts responsive on smaller screens */
 @media (max-width: 768px) {
     #heatmap-chart,
     #line-chart {
         padding: 10px;
     }
+}
+
+/* ============================================ */
+/* INTERACTIVE STATE SELECTION STYLES          */
+/* ============================================ */
+
+.state-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.state-tag {
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    border: 2px solid transparent;
+    user-select: none;
+}
+
+.state-tag.prosperous {
+    background: rgba(255, 255, 255, 0.8);
+    color: #0c4a6e;
+    border-color: #0c4a6e;
+}
+
+.state-tag.prosperous:hover {
+    background: #0c4a6e;
+    color: white;
+    box-shadow: 0 4px 8px rgba(12, 74, 110, 0.3);
+}
+
+.state-tag.prosperous.active {
+    background: #0c4a6e;
+    color: white;
+    border-color: #fbbf24;
+}
+
+.state-tag.struggling {
+    background: rgba(255, 255, 255, 0.9);
+    color: #7f1d1d;
+    border-color: #7f1d1d;
+}
+
+.state-tag.struggling:hover {
+    background: #7f1d1d;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(127, 29, 29, 0.3);
+}
+
+.state-tag.struggling.active {
+    background: #7e6a6a;
+    color: white;
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.4);
+    transform: scale(1.05);
+}
+
+
+#clear-selection-btn:hover {
+    background: #4b5563 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.state-group-card {
+    transition: all 0.3s ease;
+}
+
+.state-group-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }

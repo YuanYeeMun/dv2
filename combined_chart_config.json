@@ -6,7 +6,7 @@
         "color": "independent"
       }
     },
-    "spacing":  100,
+    "spacing": 150,
     "hconcat": [
       {
         "width": 500,
@@ -33,9 +33,10 @@
                 "field": "income_median",
                 "type": "quantitative",
                 "title": "Median Household Income (RM)",
-                "scale": {"zero": false, "nice": true},
+                "scale": {"zero": true, "nice": true},
                 "axis": {
-                  "format": ",.0f"
+                  "format": ",.0f",
+                  "values": [0, 2000, 4000, 6000, 8000, 10000, 12000]
                 }
               },
               "color": {
@@ -80,13 +81,11 @@
             }
           },
           {
-          
             "mark": {
               "type": "text",
-              "align": "right",
+              "align": "center",
               "baseline": "bottom",
-              "dx": 15,
-              "dy": 15,
+              "dy": -10,
               "fontSize": 16,
               "fontWeight": "bold",
               "color": "#ff8000ff"
@@ -98,11 +97,22 @@
                 "method": "linear",
                 "params": true
               },
-              {"calculate": "'R² = ' + format(datum.rSquared, '.3f')", "as": "r2_text"}
+              {
+                "calculate": "'R² = ' + format(datum.rSquared, '.3f')",
+                "as": "r2_text"
+              },
+              {
+                "calculate": "2.0",
+                "as": "x_position"
+              },
+              {
+                "calculate": "6800",
+                "as": "y_position"
+              }
             ],
             "encoding": {
-              "x": {"value": 10},
-              "y": {"value": 10},
+              "x": {"field": "x_position", "type": "quantitative"},
+              "y": {"field": "y_position", "type": "quantitative"},
               "text": {"field": "r2_text", "type": "nominal"}
             }
           },
@@ -115,6 +125,19 @@
               "fontSize": 9,
               "color": "#333"
             },
+            "transform": [
+              {
+                "window": [{"op": "rank", "as": "rank_high"}],
+                "sort": [{"field": "income_median", "order": "descending"}]
+              },
+              {
+                "window": [{"op": "rank", "as": "rank_low"}],
+                "sort": [{"field": "income_median", "order": "ascending"}]
+              },
+              {
+                "filter": "datum.rank_high === 1 || datum.rank_low === 1"
+              }
+            ],
             "encoding": {
               "x": {"field": "u_rate", "type": "quantitative"},
               "y": {"field": "income_median", "type": "quantitative"},
@@ -164,7 +187,7 @@
             "type": "nominal",
             "scale": {
               "domain": ["Below Average", "Above Average"],
-              "range": ["#feba28ff", "#2bb1ffff"]
+              "range": ["#d55e00", "#b2d8d8"]
             },
             "legend": {
               "title": "Performance",

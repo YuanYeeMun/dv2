@@ -32,18 +32,54 @@ function getSpecForYear(specKey, year) {
             : `year(datum.date) == ${year} && (datum.sex == 'both')`; 
     }
     
-    // Add conditional opacity based on selection
+    // Add stroke-based highlighting
     if (spec.layer && spec.layer[1] && spec.layer[1].encoding) {
-        spec.layer[1].encoding.opacity = {
-            "condition": {
-                "test": selectedState ? `datum.state === '${selectedState}'` : "true",
-                "value": 1
-            },
-            "value": 0.2
-        };
+        // Keep all states fully visible
+        spec.layer[1].encoding.opacity = { "value": 1 };
         
-        // Also reduce stroke opacity for non-selected states
-        spec.layer[1].mark.strokeOpacity = 0.5;
+        // If user clicked a state, highlight only that state
+        // Otherwise, highlight both KL and Kelantan by default
+        if (selectedState) {
+            // User has selected a specific state
+            spec.layer[1].encoding.strokeWidth = {
+                "condition": {
+                    "test": `datum.state === '${selectedState}'`,
+                    "value": 5
+                },
+                "value": 1
+            };
+            
+            spec.layer[1].encoding.stroke = {
+                "condition": {
+                    "test": `datum.state === '${selectedState}'`,
+                    "value": "#ff9aebff"  
+                },
+                "value": "white"
+            };
+        } else {
+            // Default: highlight both KL and Kelantan
+            spec.layer[1].encoding.strokeWidth = {
+                "condition": {
+                    "test": "datum.state === 'Kuala Lumpur' || datum.state === 'Kelantan'",
+                    "value": 5
+                },
+                "value": 1
+            };
+            
+            spec.layer[1].encoding.stroke = {
+                "condition": [
+                    {
+                        "test": "datum.state === 'Kuala Lumpur'",
+                        "value": "#1c1c1cff"  // prosperous
+                    },
+                    {
+                        "test": "datum.state === 'Kelantan'",
+                        "value": "#000000ff"  // struggling
+                    }
+                ],
+                "value": "white"
+            };
+        }
     }
     
     return spec;
@@ -67,9 +103,17 @@ function addClickListener(view, mapId) {
     view.addEventListener('click', function(event, item) {
         if (item && item.datum && item.datum.state) {
             handleStateClick(item.datum.state);
+            
+            // Update state tags to reflect map click
+            document.querySelectorAll('.state-tag').forEach(t => t.classList.remove('active'));
+            const clickedTag = document.querySelector(`.state-tag[data-state="${item.datum.state}"]`);
+            if (clickedTag && selectedState) {
+                clickedTag.classList.add('active');
+            }
         } else if (!item || !item.datum) {
-            // Clicking on background - deselect
+            // Clicking on background - reset to default (KL/Kelantan highlighted)
             handleStateClick(null);
+            document.querySelectorAll('.state-tag').forEach(t => t.classList.remove('active'));
         }
     });
 }
@@ -147,7 +191,7 @@ async function updateMaps() {
 
 // Initialize when DOM is ready
 window.addEventListener('DOMContentLoaded', function() {
-    // Add event listeners
+    // Add event listeners for year selectors
     const year1Select = document.getElementById('year1');
     const year2Select = document.getElementById('year2');
     
@@ -159,6 +203,33 @@ window.addEventListener('DOMContentLoaded', function() {
         year2Select.addEventListener('change', updateMaps);
     }
     
-    // Initial load
+    // Add event listeners for state tag clicks
+    document.querySelectorAll('.state-tag').forEach(tag => {
+        tag.addEventListener('click', function() {
+            const stateName = this.getAttribute('data-state');
+            
+            // Remove active class from all tags
+            document.querySelectorAll('.state-tag').forEach(t => t.classList.remove('active'));
+            
+            // Toggle selection
+            if (selectedState === stateName) {
+                handleStateClick(null); // Deselect - returns to default dual highlight
+            } else {
+                this.classList.add('active');
+                handleStateClick(stateName);
+            }
+        });
+    });
+    
+    // Add event listener for clear selection button
+    const clearBtn = document.getElementById('clear-selection-btn');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+            handleStateClick(null); // Returns to default dual highlight
+            document.querySelectorAll('.state-tag').forEach(t => t.classList.remove('active'));
+        });
+    }
+    
+    // Initial load - will show both KL and Kelantan highlighted by default
     updateMaps();
 });
