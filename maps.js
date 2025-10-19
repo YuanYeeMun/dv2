@@ -25,23 +25,23 @@ function getSpecForYear(specKey, year) {
     // Clone the spec to avoid modifying the original
     const spec = JSON.parse(JSON.stringify(specsData[specKey]));
     
-    // Update the year filter in the transform
-    if (spec.layer && spec.layer[1] && spec.layer[1].transform) {
-        spec.layer[1].transform[0].filter = specKey.includes('income') 
+    // Update the year filter in the transform (data layer is now index 2)
+    if (spec.layer && spec.layer[2] && spec.layer[2].transform) {
+        spec.layer[2].transform[0].filter = specKey.includes('income') 
             ? `year(datum.date) == ${year}`
             : `year(datum.date) == ${year} && (datum.sex == 'both')`; 
     }
     
-    // Add stroke-based highlighting
-    if (spec.layer && spec.layer[1] && spec.layer[1].encoding) {
+    // Add stroke-based highlighting to data layer (now index 2)
+    if (spec.layer && spec.layer[2] && spec.layer[2].encoding) {
         // Keep all states fully visible
-        spec.layer[1].encoding.opacity = { "value": 1 };
+        spec.layer[2].encoding.opacity = { "value": 1 };
         
         // If user clicked a state, highlight only that state
         // Otherwise, highlight both KL and Kelantan by default
         if (selectedState) {
             // User has selected a specific state
-            spec.layer[1].encoding.strokeWidth = {
+            spec.layer[2].encoding.strokeWidth = {
                 "condition": {
                     "test": `datum.state === '${selectedState}'`,
                     "value": 5
@@ -49,16 +49,16 @@ function getSpecForYear(specKey, year) {
                 "value": 1
             };
             
-            spec.layer[1].encoding.stroke = {
+            spec.layer[2].encoding.stroke = {
                 "condition": {
                     "test": `datum.state === '${selectedState}'`,
-                    "value": "#ff9aebff"  
+                    "value": "#ff8bc9ff"  // selected state
                 },
                 "value": "white"
             };
         } else {
             // Default: highlight both KL and Kelantan
-            spec.layer[1].encoding.strokeWidth = {
+            spec.layer[2].encoding.strokeWidth = {
                 "condition": {
                     "test": "datum.state === 'Kuala Lumpur' || datum.state === 'Kelantan'",
                     "value": 5
@@ -66,15 +66,15 @@ function getSpecForYear(specKey, year) {
                 "value": 1
             };
             
-            spec.layer[1].encoding.stroke = {
+            spec.layer[2].encoding.stroke = {
                 "condition": [
                     {
                         "test": "datum.state === 'Kuala Lumpur'",
-                        "value": "#1c1c1cff"  // prosperous
+                        "value": "#000000ff"  // prosperous (KL)
                     },
                     {
                         "test": "datum.state === 'Kelantan'",
-                        "value": "#000000ff"  // struggling
+                        "value": "#111111ff"  // struggling (Kelantan)
                     }
                 ],
                 "value": "white"

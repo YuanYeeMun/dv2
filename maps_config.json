@@ -3,27 +3,19 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 600,
     "height": 400,
-    "title": {
-      "fontSize": 16,
-      "font": "serif"
-    },
+    "title": { "fontSize": 16, "font": "serif" },
     "layer": [
       {
-        "data": {
-          "url": "malaysia_states.topojson",
-          "format": {
-            "type": "topojson",
-            "feature": "malaysia_states"
-          }
+        "data": { 
+          "url": "malaysia_states.topojson", 
+          "format": { "type": "topojson", "feature": "malaysia_states" } 
         },
-        "projection": {
-          "type": "mercator"
-        },
-        "mark": {
-          "type": "geoshape",
-          "fill": "#e0e0e0",
-          "stroke": "white",
-          "strokeWidth": 1
+        "projection": { "type": "mercator" },
+        "mark": { 
+          "type": "geoshape", 
+          "fill": "#e0e0e0", 
+          "stroke": "white", 
+          "strokeWidth": 1 
         }
       },
       {
@@ -33,9 +25,7 @@
             "extent": [[99, 0], [120, 8]]
           }
         },
-        "projection": {
-          "type": "mercator"
-        },
+        "projection": { "type": "mercator" },
         "mark": {
           "type": "geoshape",
           "stroke": "#cccccc",
@@ -45,45 +35,31 @@
         }
       },
       {
-        "data": {
-          "url": "hh_income_state.csv",
-          "format": {"type": "csv"}
-        },
+        "data": { "url": "hh_income_state.csv", "format": { "type": "csv" } },
         "transform": [
-          {
-            "filter": "year(datum.date) == 2012"
-          },
+          { "filter": "year(datum.date) == 2012" },
           {
             "lookup": "state",
             "from": {
-              "data": {
-                "url": "malaysia_states.topojson",
-                "format": {
-                  "type": "topojson",
-                  "feature": "malaysia_states"
-                }
+              "data": { 
+                "url": "malaysia_states.topojson", 
+                "format": { "type": "topojson", "feature": "malaysia_states" } 
               },
               "key": "properties.name",
               "fields": ["type", "properties", "geometry"]
             }
           }
         ],
-        "projection": {
-          "type": "mercator"
-        },
-        "mark": {
-          "type": "geoshape",
-          "stroke": "white",
-          "strokeWidth": 1
-        },
+        "projection": { "type": "mercator" },
+        "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 1 },
         "encoding": {
           "color": {
             "field": "income_percentile",
             "type": "quantitative",
-            "scale": {
-              "type": "threshold",
-              "domain": [20, 40, 60, 80],
-              "range": ["#fee12b", "#fcae1e", "#fb6a00", "#b56727", "#7b3f00"]
+            "scale": { 
+              "type": "threshold", 
+              "domain": [20, 40, 60, 80], 
+              "range": ["#fee12b", "#fcae1e", "#fb6a00", "#b56727", "#7b3f00"] 
             },
             "legend": {
               "title": "Income Percentile",
@@ -95,9 +71,9 @@
             }
           },
           "tooltip": [
-            {"field": "state", "type": "nominal", "title": "State"},
-            {"field": "income_mean", "type": "quantitative", "title": "Mean Income", "format": ",.0f"},
-            {"field": "income_percentile", "type": "quantitative", "title": "Percentile"}
+            {"field":"state","type":"nominal","title":"State"},
+            {"field":"income_mean","type":"quantitative","title":"Mean Income","format":",.0f"},
+            {"field":"income_percentile","type":"quantitative","title":"Percentile"}
           ]
         }
       }
@@ -107,27 +83,19 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 600,
     "height": 400,
-    "title": {
-      "fontSize": 16,
-      "font": "serif"
-    },
+    "title": { "fontSize": 16, "font": "serif" },
     "layer": [
       {
-        "data": {
-          "url": "malaysia_states.topojson",
-          "format": {
-            "type": "topojson",
-            "feature": "malaysia_states"
-          }
+        "data": { 
+          "url": "malaysia_states.topojson", 
+          "format": { "type": "topojson", "feature": "malaysia_states" } 
         },
-        "projection": {
-          "type": "mercator"
-        },
-        "mark": {
-          "type": "geoshape",
-          "fill": "#e0e0e0",
-          "stroke": "white",
-          "strokeWidth": 1
+        "projection": { "type": "mercator" },
+        "mark": { 
+          "type": "geoshape", 
+          "fill": "#e0e0e0", 
+          "stroke": "white", 
+          "strokeWidth": 1 
         }
       },
       {
@@ -137,9 +105,7 @@
             "extent": [[99, 0], [120, 8]]
           }
         },
-        "projection": {
-          "type": "mercator"
-        },
+        "projection": { "type": "mercator" },
         "mark": {
           "type": "geoshape",
           "stroke": "#cccccc",
@@ -149,45 +115,31 @@
         }
       },
       {
-        "data": {
-          "url": "lfs_state_sex.csv",
-          "format": {"type": "csv"}
-        },
+        "data": { "url": "lfs_state_sex.csv", "format": { "type": "csv" } },
         "transform": [
-          {
-            "filter": "year(datum.date) == 2012 && datum.sex == 'both'"
-          },
+          { "filter": "year(datum.date) == 2012 && datum.sex == 'both'" },
           {
             "lookup": "state",
             "from": {
-              "data": {
-                "url": "malaysia_states.topojson",
-                "format": {
-                  "type": "topojson",
-                  "feature": "malaysia_states"
-                }
+              "data": { 
+                "url": "malaysia_states.topojson", 
+                "format": { "type": "topojson", "feature": "malaysia_states" } 
               },
               "key": "properties.name",
               "fields": ["type", "properties", "geometry"]
             }
           }
         ],
-        "projection": {
-          "type": "mercator"
-        },
-        "mark": {
-          "type": "geoshape",
-          "stroke": "white",
-          "strokeWidth": 1
-        },
+        "projection": { "type": "mercator" },
+        "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 1 },
         "encoding": {
           "color": {
             "field": "u_rate",
             "type": "quantitative",
-            "scale": {
-              "type": "threshold",
-              "domain": [2, 3, 4, 5],
-              "range": ["#DBF1FF", "#85c1e9", "#3498db", "#21618c", "#154360"]
+            "scale": { 
+              "type": "threshold", 
+              "domain": [2, 3, 4, 5], 
+              "range": ["#DBF1FF","#85c1e9","#3498db","#21618c","#154360"] 
             },
             "legend": {
               "title": "Unemployment Rate (%)",
@@ -199,8 +151,8 @@
             }
           },
           "tooltip": [
-            {"field": "state", "type": "nominal", "title": "State"},
-            {"field": "u_rate", "type": "quantitative", "title": "Unemployment Rate", "format": ".1f"}
+            {"field":"state","type":"nominal","title":"State"},
+            {"field":"u_rate","type":"quantitative","title":"Unemployment Rate","format":".1f"}
           ]
         }
       }
@@ -210,27 +162,19 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 600,
     "height": 400,
-    "title": {
-      "fontSize": 16,
-      "font": "serif"
-    },
+    "title": { "fontSize": 16, "font": "serif" },
     "layer": [
       {
-        "data": {
-          "url": "malaysia_states.topojson",
-          "format": {
-            "type": "topojson",
-            "feature": "malaysia_states"
-          }
+        "data": { 
+          "url": "malaysia_states.topojson", 
+          "format": { "type": "topojson", "feature": "malaysia_states" } 
         },
-        "projection": {
-          "type": "mercator"
-        },
-        "mark": {
-          "type": "geoshape",
-          "fill": "#e0e0e0",
-          "stroke": "white",
-          "strokeWidth": 1
+        "projection": { "type": "mercator" },
+        "mark": { 
+          "type": "geoshape", 
+          "fill": "#e0e0e0", 
+          "stroke": "white", 
+          "strokeWidth": 1 
         }
       },
       {
@@ -240,9 +184,7 @@
             "extent": [[99, 0], [120, 8]]
           }
         },
-        "projection": {
-          "type": "mercator"
-        },
+        "projection": { "type": "mercator" },
         "mark": {
           "type": "geoshape",
           "stroke": "#cccccc",
@@ -252,49 +194,35 @@
         }
       },
       {
-        "data": {
-          "url": "hh_income_state.csv",
-          "format": {"type": "csv"}
-        },
+        "data": { "url": "hh_income_state.csv", "format": { "type": "csv" } },
         "transform": [
-          {
-            "filter": "year(datum.date) == 2022"
-          },
-          {
-            "calculate": "datum.income_percentile < 20 ? '<20' : datum.income_percentile < 40 ? '20-40' : datum.income_percentile < 60 ? '40-60' : datum.income_percentile < 80 ? '60-80' : '>80'",
-            "as": "income_percentile_category"
+          { "filter": "year(datum.date) == 2022" },
+          { 
+            "calculate": "datum.income_percentile < 20 ? '<20' : datum.income_percentile < 40 ? '20-40' : datum.income_percentile < 60 ? '40-60' : datum.income_percentile < 80 ? '60-80' : '>80'", 
+            "as": "income_percentile_category" 
           },
           {
             "lookup": "state",
             "from": {
-              "data": {
-                "url": "malaysia_states.topojson",
-                "format": {
-                  "type": "topojson",
-                  "feature": "malaysia_states"
-                }
+              "data": { 
+                "url": "malaysia_states.topojson", 
+                "format": { "type": "topojson", "feature": "malaysia_states" } 
               },
               "key": "properties.name",
-              "fields": ["type", "properties", "geometry"]
+              "fields": ["type","properties","geometry"]
             }
           }
         ],
-        "projection": {
-          "type": "mercator"
-        },
-        "mark": {
-          "type": "geoshape",
-          "stroke": "white",
-          "strokeWidth": 1
-        },
+        "projection": { "type": "mercator" },
+        "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 1 },
         "encoding": {
           "color": {
             "field": "income_percentile",
             "type": "quantitative",
-            "scale": {
-              "type": "threshold",
-              "domain": [20, 40, 60, 80],
-              "range": ["#fee12b", "#fcae1e", "#fb6a00", "#b56727", "#7b3f00"]
+            "scale": { 
+              "type": "threshold", 
+              "domain": [20, 40, 60, 80], 
+              "range": ["#fee12b","#fcae1e","#fb6a00","#b56727","#7b3f00"] 
             },
             "legend": {
               "title": "Income Percentile",
@@ -306,9 +234,9 @@
             }
           },
           "tooltip": [
-            {"field": "state", "type": "nominal", "title": "State"},
-            {"field": "income_mean", "type": "quantitative", "title": "Mean Income", "format": ",.0f"},
-            {"field": "income_percentile", "type": "quantitative", "title": "Percentile"}
+            {"field":"state","type":"nominal","title":"State"},
+            {"field":"income_mean","type":"quantitative","title":"Mean Income","format":",.0f"},
+            {"field":"income_percentile","type":"quantitative","title":"Percentile"}
           ]
         }
       }
@@ -318,27 +246,19 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 600,
     "height": 400,
-    "title": {
-      "fontSize": 16,
-      "font": "serif"
-    },
+    "title": { "fontSize": 16, "font": "serif" },
     "layer": [
       {
-        "data": {
-          "url": "malaysia_states.topojson",
-          "format": {
-            "type": "topojson",
-            "feature": "malaysia_states"
-          }
+        "data": { 
+          "url": "malaysia_states.topojson", 
+          "format": { "type": "topojson", "feature": "malaysia_states" } 
         },
-        "projection": {
-          "type": "mercator"
-        },
-        "mark": {
-          "type": "geoshape",
-          "fill": "#e0e0e0",
-          "stroke": "white",
-          "strokeWidth": 1
+        "projection": { "type": "mercator" },
+        "mark": { 
+          "type": "geoshape", 
+          "fill": "#e0e0e0", 
+          "stroke": "white", 
+          "strokeWidth": 1 
         }
       },
       {
@@ -348,9 +268,7 @@
             "extent": [[99, 0], [120, 8]]
           }
         },
-        "projection": {
-          "type": "mercator"
-        },
+        "projection": { "type": "mercator" },
         "mark": {
           "type": "geoshape",
           "stroke": "#cccccc",
@@ -360,45 +278,31 @@
         }
       },
       {
-        "data": {
-          "url": "lfs_state_sex.csv",
-          "format": {"type": "csv"}
-        },
+        "data": { "url": "lfs_state_sex.csv", "format": { "type": "csv" } },
         "transform": [
-          {
-            "filter": "year(datum.date) == 2022 && datum.sex == 'both'"
-          },
+          { "filter": "year(datum.date) == 2022 && datum.sex == 'both'" },
           {
             "lookup": "state",
             "from": {
-              "data": {
-                "url": "malaysia_states.topojson",
-                "format": {
-                  "type": "topojson",
-                  "feature": "malaysia_states"
-                }
+              "data": { 
+                "url": "malaysia_states.topojson", 
+                "format": { "type": "topojson", "feature": "malaysia_states" } 
               },
               "key": "properties.name",
-              "fields": ["type", "properties", "geometry"]
+              "fields": ["type","properties","geometry"]
             }
           }
         ],
-        "projection": {
-          "type": "mercator"
-        },
-        "mark": {
-          "type": "geoshape",
-          "stroke": "white",
-          "strokeWidth": 1
-        },
+        "projection": { "type": "mercator" },
+        "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 1 },
         "encoding": {
           "color": {
             "field": "u_rate",
             "type": "quantitative",
-            "scale": {
-              "type": "threshold",
-              "domain": [2, 3, 4, 5],
-              "range": ["#DBF1FF", "#85c1e9", "#3498db", "#21618c", "#154360"]
+            "scale": { 
+              "type": "threshold", 
+              "domain": [2,3,4,5], 
+              "range": ["#DBF1FF","#85c1e9","#3498db","#21618c","#154360"] 
             },
             "legend": {
               "title": "Unemployment Rate (%)",
@@ -410,8 +314,8 @@
             }
           },
           "tooltip": [
-            {"field": "state", "type": "nominal", "title": "State"},
-            {"field": "u_rate", "type": "quantitative", "title": "Unemployment Rate", "format": ".1f"}
+            {"field":"state","type":"nominal","title":"State"},
+            {"field":"u_rate","type":"quantitative","title":"Unemployment Rate","format":".1f"}
           ]
         }
       }
