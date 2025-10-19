@@ -230,6 +230,6 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initial load - will show both KL and Kelantan highlighted by default
+    // Initial load - show both KL and Kelantan highlighted by default
     updateMaps();
 });

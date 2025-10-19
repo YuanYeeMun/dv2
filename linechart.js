@@ -20,7 +20,7 @@ function createLineChartSpec(selectedSex) {
                 "title": {
                     "text": `Cumulative State Participation Rates (2012–2022) - ${selectedSex.charAt(0).toUpperCase() + selectedSex.slice(1)}`,
                     "fontSize": 18,
-                    "font": "Arial",
+                    "font": "Merriweather",
                     "anchor": "middle",
                     "fontWeight": "bold"
                 },

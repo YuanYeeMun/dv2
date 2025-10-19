@@ -3,7 +3,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 600,
     "height": 400,
-    "title": { "fontSize": 16, "font": "serif" },
+    "title": { "fontSize": 16, "font": "Merriweather" },
     "layer": [
       {
         "data": { 

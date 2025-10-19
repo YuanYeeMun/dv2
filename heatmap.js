@@ -29,7 +29,7 @@ function createHeatmapSpec(selectedSex) {
         "title": {
             "text": `Participation Rate by State (2012-2022) - ${selectedSex.charAt(0).toUpperCase() + selectedSex.slice(1)}`,
             "fontSize": 18,
-            "font": "Arial",
+            "font": "Merriweather",
             "anchor": "middle",
             "fontWeight": "bold"
         },
